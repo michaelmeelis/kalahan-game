@@ -1,0 +1,60 @@
+<p>It is currently {{game.getActivePlayer().getName()}} turn.</p>
+<form action="/game/{{game.getGameUuid().toString()}}" method="post">
+    <table>
+        <tr>
+            <td></td>
+            {% for action in [5,4,3,2,1,0] %}
+                <td>
+                    <input type="radio" name="chosen_pit" value="{{action}}" />
+                </td>
+            {% endfor %}
+
+            <td></td>
+        </tr>
+        <tr>
+            {% for pit in player1_pits %}
+                {% if (loop.first) %}
+                    <td rowspan="2">
+                        <input disabled id="kalahan{{pit.getPosition()}}" value="{{pit.getStones().size()}}" />
+                    </td>
+                {% else %}
+                    <td>
+                        <input id="pit{{pit.getPosition()}}" value="{{pit.getStones().size()}}" disabled />
+                    </td>
+                {% endif %}
+            {% endfor %}
+
+            {% for index, pit in player2_pits %}
+                {% if (loop.first) %}
+        </tr>
+        <tr>
+            <td>
+                <input id="pit{{pit.getPosition()}}" value="{{pit.getStones().size()}}" disabled />
+            </td>
+            {% elseif (loop.last) %}
+            <td rowspan="2">
+                <input disabled id="kalahan{{pit.getPosition()}}" value="{{pit.getStones().size()}}" />
+            </td>
+        </tr>
+
+                {% else %}
+            <td>
+                <input id="pit{{pit.getPosition()}}" value="{{pit.getStones().size()}}" disabled />
+            </td>
+                {% endif%}
+
+            {% endfor %}
+        <tr>
+            <td></td>
+            {% for action in [7,8,9,10,11,12] %}
+            <td>
+                <input type="radio" name="chosen_pit" value="{{action}}" />
+            </td>
+            {% endfor%}
+
+            <td></td>
+        </tr>
+
+    </table>
+    <input type="submit" value="play" />
+</form>
