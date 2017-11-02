@@ -32,6 +32,12 @@ public class GameFactory {
         game.setGameUuid(UUID.randomUUID());
         game.setActivePlayer(players.get(0));
 
+        activePlayerGainAction(game.getActivePlayer());
+
         return game;
+    }
+
+    private void activePlayerGainAction(Player activePlayer) {
+        activePlayer.gainAction();
     }
 }
