@@ -55,7 +55,6 @@ public class PlayerService {
         Pit pit = buildChosenPit(game.getBoard(), chosenPit);
         action.play(pit);
         action.getPlayer().useAction();
-
     }
 
     private Pit buildChosenPit(Board board, Integer chosenPit) {
@@ -90,14 +89,16 @@ public class PlayerService {
             return;
         }
 
-        game.setActivePlayer(buildNextPlayer(game, player));
+        Player nextPlayer = buildNextPlayer(game, player);
+        nextPlayer.gainAction();
+        game.setActivePlayer(nextPlayer);
     }
 
     private Player buildNextPlayer(Game game, Player player) throws PlayerNotFoundException {
         ArrayList<Player> players = game.getPlayers();
         for (Player loopPlayer : players) {
             if (!loopPlayer.equals(player)) {
-                return player;
+                return loopPlayer;
             }
         }
 
