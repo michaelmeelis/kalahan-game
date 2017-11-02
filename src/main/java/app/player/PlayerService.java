@@ -67,16 +67,20 @@ public class PlayerService {
         HashMap<Integer, Pit> pits = board.getPits();
         Drop drop = buildDropAction(grab);
         while (!drop.isEmpty()) {
-            Pit nextPit = buildNextPit(pits, chosenPit);
-            drop.play(nextPit);
             chosenPit++;
+
+            Pit nextPit = buildPit(pits, chosenPit);
+            drop.play(nextPit);
+            if (pits.size() - 1 == chosenPit) {
+                chosenPit = -1;
+            }
         }
 
         return drop;
     }
 
-    private Pit buildNextPit(HashMap<Integer, Pit> pits, Integer previousPit) {
-        return pits.get(previousPit + 1);
+    private Pit buildPit(HashMap<Integer, Pit> pits, Integer pit) {
+        return pits.get(pit);
     }
 
     public void endPlayerTurn(Game game, Player player) throws PlayerNotFoundException {
