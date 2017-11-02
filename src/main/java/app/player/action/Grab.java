@@ -17,7 +17,7 @@ public class Grab implements ActionInterface{
 
     public void play(Pit pit) {
         this.grabbedPit = pit;
-        this.stones = pit.getStones();
+        this.stones = (ArrayList<Stone>) pit.getStones().clone();
 
         pit.removeStones();
     }
