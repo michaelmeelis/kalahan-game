@@ -102,7 +102,7 @@ public class GameController {
             return "redirect:game";
         }
 
-        return "redirect:game/" + gameUuid;
+        return "redirect:/game/" + gameUuid;
     }
 
 }
