@@ -4,7 +4,7 @@ public class Player {
     private Integer points;
     private Boolean startingPlayer;
     private String name;
-    private Integer amountAction = 1;
+    private Integer amountAction = 0;
 
     public Player(){
         this.points = 0;
@@ -51,7 +51,7 @@ public class Player {
     }
 
     public Boolean hasAction() {
-        return amountAction > 0;
+        return this.amountAction > 0;
     }
 
 }
